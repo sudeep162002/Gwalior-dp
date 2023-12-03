@@ -9,7 +9,7 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 
 const app = express();
-
+app.use(express.json());
 
 app.get('/',(req,res)=>{
   res.status(200).send("this is backend routes")
@@ -18,6 +18,16 @@ app.get('/',(req,res)=>{
 
 app.post('/insert', async (req,res)=>{
   const user: User = req.body;
+
+  console.log(req.body)
+  if (!req.body || !req.body.fullName) {
+    return res.status(400).json({ message: 'Invalid request body.' });
+  }
+  const existingUser = await Users.findOne({ fullName: user.fullName });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User already exists.' });
+    }
+
   const newUser = new Users({
     ...user,
   });

@@ -33,29 +33,31 @@ class DocumentHandler  {
 
 
   async updateDocument(req: Request, res: Response): Promise<void> {
-
-    const user: User = req.body;
+    const updatedUser: User = req.body;
   
-    if (!req.body || !req.body.fullName) {
+    if (!updatedUser || !updatedUser._id) {
       return res.status(400).json({ message: 'Invalid request body.' });
     }
-    const existingUser = await Users.findOne({ id: user._id });
-      if (existingUser) {
-        return res.status(400).json({ message: 'User already exists.' });
+  
+    try {
+      // Use findOneAndUpdate to update the existing user
+      const updatedUserResult = await Users.findOneAndUpdate(
+        { _id: updatedUser._id },
+        updatedUser,
+        { new: true } // Return the updated document
+      );
+  
+      if (!updatedUserResult) {
+        return res.status(404).json({ message: 'User not found.' });
       }
   
-    const newUser = new Users({
-      ...user,
-    });
-    try {
-      const result = await newUser.save();
-      res.status(200).json({ message: 'Data successfully inserted.', result });
+      res.status(200).json({ message: 'Data successfully updated.', result: updatedUserResult });
     } catch (error) {
-      res.status(500).json({ message: 'Error inserting data.', error: error });
+      res.status(500).json({ message: 'Error updating data.', error: error });
     }
-    
   }
-
+  
+  
 
   
 }

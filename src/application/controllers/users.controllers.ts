@@ -48,7 +48,7 @@ class UsersHandler  {
     const newField: any = req.body;
 
     try {
-        const user = await Users.findById(userId);
+      const user = await Users.findOne({ userId: userId });
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });

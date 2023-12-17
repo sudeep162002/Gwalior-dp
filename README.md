@@ -1,18 +1,18 @@
 ## Simple node.js app with docker
 
 
-### Helpful commands
+### setup commands
 
 ```
-docker build . -t simple-app
-```
-
-```
-docker run simple-app
+docker-compose -f db-docker-compose.yml up
 ```
 
 ```
-docker ps
+npm run build
+```
+
+```
+docker-compose up  
 ```
 
 ```

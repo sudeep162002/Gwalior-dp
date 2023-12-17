@@ -15,6 +15,29 @@ class UsersHandler  {
       }
   }
 
+
+
+  async getUsersById(req: Request, res: Response): Promise<void> {
+    try{
+        // const usersList= await Users.findMany();
+        const userId: any = req.params.id;
+
+
+        console.log(userId)
+        // const usersList = await Users.find();
+        const familyUsers = await Users.find({ userId: userId });
+
+
+        if(!familyUsers || familyUsers.length==0) res.status(400).json({message: 'No users find in databse. '})
+    
+        res.status(200).json(familyUsers);
+      }catch(err){
+        res.status(500).json({error: err});
+      }
+  }
+
+  
+
   async insertUser(req: Request, res: Response): Promise<void> {
 
     const user: User = req.body;
@@ -70,7 +93,7 @@ class UsersHandler  {
     } catch (error) {
         res.status(500).json({ message: 'Error updating data.', error: error });
     }
-}
+  }
   
 
 

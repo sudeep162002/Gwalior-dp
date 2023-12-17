@@ -8,16 +8,13 @@ docker-compose -f db-docker-compose.yml up
 ```
 
 ```
-npm run build
+docker-compose build
 ```
 
 ```
 docker-compose up  
 ```
 
-```
-docker images
-```
 
 
 

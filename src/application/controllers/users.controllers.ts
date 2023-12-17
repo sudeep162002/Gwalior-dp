@@ -45,10 +45,16 @@ class UsersHandler  {
 
   async updateUser(req: Request, res: Response): Promise<void> {
     const userId: any = req.params.id;
+    const fullName: any=req.body.fullName;
     const newField: any = req.body;
 
     try {
-      const user = await Users.findOne({ userId: userId });
+      // console.log(fullName)
+      if (fullName === undefined || fullName === null) {
+        return res.status(400).json({ message: "Adding fullName is mandatory" });
+
+      }
+      const user = await Users.findOne({ userId: userId, fullName:fullName });
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });

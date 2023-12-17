@@ -10,6 +10,10 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+# Install Git
+RUN apk update && apk upgrade && \
+    apk add --no-cache git
+
 # Install ts-node and nodemon globally
 RUN npm install -g ts-node nodemon
 

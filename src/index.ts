@@ -19,7 +19,12 @@ const port = process.env.PORT || 3000;
 const app = express();
 app.use(express.json());
 app.use(express.static('public'));
-app.use(cors());
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+app.use(cors(corsOptions))
 app.get('/',(req,res)=>{
   
   res.status(200).send("this is backend routes")

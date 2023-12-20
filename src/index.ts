@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import express from "express";
 import { User } from './types/user';
 // import { Course } from "./models/courseShema";
+import cors from 'cors'; // Import the cors middleware
 import { Users} from "./models/user";
 import * as dotenv from 'dotenv';
 import {DocRouts}  from './application/routes/doc.routs'

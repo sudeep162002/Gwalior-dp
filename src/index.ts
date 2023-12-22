@@ -37,5 +37,5 @@ UserRouts(app);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
-console.log(process.env.MONGO_URL);
+// console.log(process.env.MONGO_URL);
 mongoose.connect(process.env.MONGO_URL || "", { dbName: "users"});

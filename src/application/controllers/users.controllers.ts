@@ -7,7 +7,7 @@ class UsersHandler  {
     try{
         // const usersList= await Users.findMany();
         const usersList = await Users.find();
-        if(!usersList || usersList.length==0) res.status(400).json({message: 'No usrs find in databse. '})
+        if(!usersList || usersList.length==0) res.status(200).json({message: 'No usrs find in databse. '})
     
         res.status(200).json(usersList);
       }catch(err){
@@ -28,7 +28,7 @@ class UsersHandler  {
         const familyUsers = await Users.find({ userId: userId });
 
 
-        if(!familyUsers || familyUsers.length==0) res.status(400).json({message: 'No users find in databse. '})
+        if(!familyUsers || familyUsers.length==0) res.status(200).json({message: 'No users find in databse. '})
     
         res.status(200).json(familyUsers);
       }catch(err){
@@ -45,13 +45,17 @@ class UsersHandler  {
     // console.log(req.body);
 
     if (!req.body || !req.body.fullName) {
-      return res.status(400).json({ message: 'Invalid request body.' });
+      return res.status(200).json({ message: 'Invalid request body.' });
     }
+    const {userId,fullName,ritwickName} = req.body;
+    if(!userId || userId===undefined)return res.status(200).json({ message: 'Family Code Is Required' });
+    if(!fullName || fullName===undefined)return res.status(200).json({ message: 'fullName Is Required' });
+    if(!ritwickName || ritwickName===undefined)return res.status(200).json({ message: 'ritwickName Is Required' });
 
     try {
       const existingUser = await Users.findOne({ fullName: user.fullName });
       if (existingUser) {
-        return res.status(400).json({ message: 'User already exists.' });
+        return res.status(200).json({ message: 'User already exists.' });
       }
 
       const newUser = new Users({
@@ -74,13 +78,13 @@ class UsersHandler  {
     try {
       // console.log(fullName)
       if (fullName === undefined || fullName === null) {
-        return res.status(400).json({ message: "Adding fullName is mandatory" });
+        return res.status(200).json({ message: "Adding fullName is mandatory" });
 
       }
       const user = await Users.findOne({ userId: userId, fullName:fullName });
 
         if (!user) {
-            return res.status(404).json({ message: "User not found" });
+            return res.status(200).json({ message: "User not found" });
         }
 
         Object.keys(newField).forEach(key => {

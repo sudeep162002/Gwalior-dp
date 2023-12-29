@@ -27,7 +27,7 @@ const corsOptions ={
 app.use(cors(corsOptions))
 app.get('/',(req,res)=>{
   
-  res.status(200).send("this is backend routes")
+  res.status(200).send("this is backend routes and health checkup")
 })
 
 DocRouts(app);

@@ -61,7 +61,7 @@ class UsersHandler  {
       const newUser = new Users({
         ...user,
       });
-
+      // console.log('this is new user ',newUser)
       const result = await newUser.save();
       res.status(200).json({ message: 'Data successfully inserted.', result });
     } catch (error) {

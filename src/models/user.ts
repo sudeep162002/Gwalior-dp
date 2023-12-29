@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
   anandabazar: String,
   srimandir: String,
   parivrity: String,
-  misc: String
+  misc: String,
+  address: String
 
 });
 

@@ -13,7 +13,7 @@ IMS is a platform designed to efficiently handle the Istavrity of multiple famil
 ## Tech Stack
 
 - **Frontend:** Angular with TypeScript
-- **Backend:** [Specify your backend technology if applicable]
+- **Backend:** Express with Type script
 - **Containerization:** Docker
 - **CI/CD:** GitHub Actions
 - **Container Registry:** Docker Hub
